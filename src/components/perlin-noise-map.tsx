@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react"
 import { createNoise2D } from 'simplex-noise'
 const seed = () => Math.random()
-const  noise = createNoise2D(seed)
-const WIDTH = 500
-const HEIGHT = 500
-const SCALE = 0.009
+const noise = createNoise2D(seed)
+const WIDTH = 600
+const HEIGHT = 600
+const SCALE = 0.01
 // 颜色映射函数
 const getColor = (value: number) => {
   // 映射噪声值到不同颜色
@@ -12,7 +12,7 @@ const getColor = (value: number) => {
   if (value < 0) return { r: 255, g: 255, b: 0 };  // 沙漠
   if (value < 0.3) return { r: 0, g: 255, b: 0 };  // 草地
   if (value < 0.5) return { r: 139, g: 69, b: 19 }; // 森林
-  return { r: 255, g: 255, b: 255 }; // 雪山
+  return { r: 255, g: 255, b: 222 }; // 雪山
 };
 export default function PerlinNoiseMap() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -34,7 +34,7 @@ export default function PerlinNoiseMap() {
       }
     }
     ctx.putImageData(imageData, 0, 0)
-  },[])
+  })
   return (
     <div>
       <canvas ref={canvasRef} width={WIDTH} height={HEIGHT} />
